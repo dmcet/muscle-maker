@@ -1,7 +1,17 @@
 <resources>
     <string name="app_name">MuscleMaker</string>
-    <string name="welcome">Welcome to MuscleMaker!\nWhat would you like to do?</string>
     <string name="start_workout">Start Workout</string>
     <string name="manage_workouts">Manage Workouts</string>
     <string name="see_history">See Workout History</string>
+    <string name="add_workout">Add workout</string>
+    <string name="areas">Trained areas:</string>
+    <string name="exercises">Exercises:</string>
+    <string name="total_weight">Total moved weight:</string>
+    <string name="select_exercise">Please select an exercise</string>
+    <string name="repetitions">Repetitions</string>
+    <string name="weight">Weight (kg)</string>
+    <string name="add_set">Add set</string>
+    <string name="finalize_exercise">Finalize exercise</string>
+    <string name="finalize_workout">Finalize workout</string>
+    <string name="set_workout_name">Set workout name</string>
 </resources>

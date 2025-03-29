@@ -1,6 +1,5 @@
 package de.dmcet.musclemaker.ui.home
 
-import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -8,12 +7,17 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Create
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -39,8 +43,6 @@ fun Home(
                 .fillMaxWidth()
                 .padding(5.dp)
 
-        Text(stringResource(R.string.welcome))
-
         Image(
             painter = painterResource(R.drawable.musclemaker_splash),
             contentDescription = "",
@@ -50,18 +52,21 @@ fun Home(
             modifier = buttonModifier,
             functionNameResource = R.string.start_workout,
             onClick = onStartWorkout,
+            functionIcon = Icons.Default.PlayArrow,
         )
 
         FunctionNavigationButton(
             modifier = buttonModifier,
             functionNameResource = R.string.manage_workouts,
             onClick = onManageWorkouts,
+            functionIcon = Icons.Default.Create,
         )
 
         FunctionNavigationButton(
             modifier = buttonModifier,
             functionNameResource = R.string.see_history,
             onClick = onSeeHistory,
+            functionIcon = Icons.Default.DateRange,
         )
     }
 }
@@ -71,7 +76,7 @@ private fun FunctionNavigationButton(
     @StringRes functionNameResource: Int,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    @DrawableRes functionIconResource: Int? = null,
+    functionIcon: ImageVector? = null,
 ) {
     val functionName = stringResource(functionNameResource)
     Button(
@@ -81,10 +86,11 @@ private fun FunctionNavigationButton(
             onClick()
         },
     ) {
-        functionIconResource?.let {
+        functionIcon?.let {
             Icon(
-                painter = painterResource(it),
+                functionIcon,
                 contentDescription = null,
+                modifier = Modifier.padding(end = 5.dp),
             )
         }
 
