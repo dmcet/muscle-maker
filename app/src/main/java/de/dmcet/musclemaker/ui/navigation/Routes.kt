@@ -5,4 +5,13 @@ import kotlinx.serialization.Serializable
 object Routes {
     @Serializable
     object Home
+
+    @Serializable
+    object ManageWorkouts
+
+    @Serializable
+    object WorkoutManager
+
+    @Serializable
+    object WorkoutCreator
 }
