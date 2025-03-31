@@ -16,13 +16,13 @@ abstract class WorkoutCreatorViewModelApi : ViewModel() {
     abstract val selectedExercise: Flow<Exercise>
     abstract val createdSets: Flow<List<WorkoutSet>>
 
-    abstract suspend fun setWorkoutName(name: String)
+    abstract fun setWorkoutName(name: String)
 
-    abstract suspend fun selectExercise(exercise: Exercise)
+    abstract fun selectExercise(exercise: Exercise)
 
-    abstract suspend fun addSet(set: WorkoutSet)
+    abstract fun addSet(set: WorkoutSet)
 
-    abstract suspend fun closeExercise()
+    abstract fun closeExercise()
 
-    abstract suspend fun onWorkoutPlanCreationFinished()
+    abstract fun onWorkoutPlanCreationFinished()
 }

@@ -28,7 +28,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -42,7 +41,6 @@ import de.dmcet.musclemaker.domain.workout.exercise.Exercise
 import de.dmcet.musclemaker.ui.management.api.WorkoutCreatorState
 import de.dmcet.musclemaker.ui.management.api.WorkoutCreatorViewModelApi
 import de.dmcet.musclemaker.ui.theme.Typography
-import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -91,8 +89,8 @@ fun WorkoutCreator(
 private fun ColumnScope.SetDefinitionMenu(
     selectedExerciseProvider: () -> Exercise,
     createdSetProvider: () -> List<WorkoutSet>,
-    onAddSet: suspend (WorkoutSet) -> Unit,
-    onCloseExercise: suspend () -> Unit,
+    onAddSet: (WorkoutSet) -> Unit,
+    onCloseExercise: () -> Unit,
 ) {
     val createdSets = createdSetProvider().filter { it.exercise == selectedExerciseProvider() }
 
@@ -129,20 +127,16 @@ private fun ColumnScope.SetDefinitionMenu(
             }
         },
         bottomRowContent = {
-            val scope = rememberCoroutineScope()
-
             Button(
                 modifier = Modifier.weight(0.5f),
                 onClick = {
-                    scope.launch {
-                        onAddSet(
-                            WorkoutSet(
-                                newSetReps.value.toInt(),
-                                newSetWeight.value.toDouble(),
-                                selectedExerciseProvider(),
-                            ),
-                        )
-                    }
+                    onAddSet(
+                        WorkoutSet(
+                            newSetReps.value.toInt(),
+                            newSetWeight.value.toDouble(),
+                            selectedExerciseProvider(),
+                        ),
+                    )
                 },
                 enabled = isValidSet(newSetReps.value, newSetWeight.value),
             ) {
@@ -151,11 +145,7 @@ private fun ColumnScope.SetDefinitionMenu(
 
             Button(
                 modifier = Modifier.weight(0.5f),
-                onClick = {
-                    scope.launch {
-                        onCloseExercise()
-                    }
-                },
+                onClick = onCloseExercise,
             ) {
                 Text(text = stringResource(R.string.finalize_exercise))
             }
@@ -244,9 +234,9 @@ private fun ColumnScope.ExerciseSelectionList(
     availableExercisesProvider: () -> List<Exercise>,
     createdSetsProvider: () -> List<WorkoutSet>,
     workoutNameProvider: () -> String,
-    onSelectExercise: suspend (Exercise) -> Unit,
-    onFinishWorkoutCreation: suspend () -> Unit,
-    onSetWorkoutName: suspend (String) -> Unit,
+    onSelectExercise: (Exercise) -> Unit,
+    onFinishWorkoutCreation: () -> Unit,
+    onSetWorkoutName: (String) -> Unit,
 ) {
     val createdSets = createdSetsProvider()
     val headline = stringResource(R.string.select_exercise)
@@ -263,27 +253,18 @@ private fun ColumnScope.ExerciseSelectionList(
             }
         },
         bottomRowContent = {
-            val scope = rememberCoroutineScope()
             val workoutName = workoutNameProvider()
 
             OutlinedTextField(
                 modifier = Modifier.weight(0.7f),
                 value = workoutName,
-                onValueChange = {
-                    scope.launch {
-                        onSetWorkoutName(it)
-                    }
-                },
+                onValueChange = onSetWorkoutName,
                 placeholder = { Text("Workout name") },
             )
 
             Button(
                 modifier = Modifier.weight(0.3f),
-                onClick = {
-                    scope.launch {
-                        onFinishWorkoutCreation()
-                    }
-                },
+                onClick = onFinishWorkoutCreation,
                 enabled = createdSets.isNotEmpty() && workoutName.isNotBlank(),
             ) {
                 Text(text = stringResource(R.string.finalize_workout))
@@ -295,11 +276,9 @@ private fun ColumnScope.ExerciseSelectionList(
 @Composable
 private fun ExerciseInfoCard(
     exercise: Exercise,
-    onSelectExercise: suspend (Exercise) -> Unit,
+    onSelectExercise: (Exercise) -> Unit,
     alreadyInWorkout: Boolean,
 ) {
-    val scope = rememberCoroutineScope()
-
     val cardColors =
         if (alreadyInWorkout) {
             CardDefaults.elevatedCardColors()
@@ -309,9 +288,7 @@ private fun ExerciseInfoCard(
 
     Card(
         onClick = {
-            scope.launch {
-                onSelectExercise(exercise)
-            }
+            onSelectExercise(exercise)
         },
         colors = cardColors,
     ) {

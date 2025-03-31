@@ -1,5 +1,6 @@
 package de.dmcet.musclemaker.ui.management
 
+import androidx.lifecycle.viewModelScope
 import de.dmcet.musclemaker.domain.workout.WorkoutPlan
 import de.dmcet.musclemaker.domain.workout.WorkoutSet
 import de.dmcet.musclemaker.domain.workout.api.ExerciseRepository
@@ -10,6 +11,7 @@ import de.dmcet.musclemaker.ui.management.api.WorkoutCreatorViewModelApi
 import io.github.oshai.kotlinlogging.KotlinLogging
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
 
 private val logger = KotlinLogging.logger("WorkoutEditorViewModel")
 
@@ -28,33 +30,43 @@ class WorkoutCreatorViewModel(
     override val createdSets = createdSetsStateFlow
     override val selectedExercise: Flow<Exercise> = selectedExerciseStateFlow
 
-    override suspend fun setWorkoutName(name: String) {
+    override fun setWorkoutName(name: String) {
         logger.info { "Setting name to $name" }
-        nameStateFlow.emit(name)
+        viewModelScope.launch {
+            nameStateFlow.emit(name)
+        }
     }
 
-    override suspend fun selectExercise(exercise: Exercise) {
+    override fun selectExercise(exercise: Exercise) {
         logger.info { "Exercise $exercise was selected" }
-        selectedExerciseStateFlow.emit(exercise)
-        creatorStateFlow.emit(WorkoutCreatorState.SetDefinition)
+        viewModelScope.launch {
+            selectedExerciseStateFlow.emit(exercise)
+            creatorStateFlow.emit(WorkoutCreatorState.SetDefinition)
+        }
     }
 
-    override suspend fun addSet(set: WorkoutSet) {
+    override fun addSet(set: WorkoutSet) {
         logger.info { "Adding set $set to workout ${nameStateFlow.value}" }
-        createdSetsStateFlow.emit(createdSetsStateFlow.value + set)
+        viewModelScope.launch {
+            createdSetsStateFlow.emit(createdSetsStateFlow.value + set)
+        }
     }
 
-    override suspend fun closeExercise() {
+    override fun closeExercise() {
         logger.info { "Closing exercise ${selectedExerciseStateFlow.value}" }
-        creatorStateFlow.emit(WorkoutCreatorState.ExerciseSelection)
+        viewModelScope.launch {
+            creatorStateFlow.emit(WorkoutCreatorState.ExerciseSelection)
+        }
     }
 
-    override suspend fun onWorkoutPlanCreationFinished() {
+    override fun onWorkoutPlanCreationFinished() {
         logger.info { "Workout creation has finished, constructing workout and storing it" }
         val newWorkoutPlan = WorkoutPlan(nameStateFlow.value, createdSetsStateFlow.value)
         logger.info { "New workout plan: $newWorkoutPlan" }
-        planRepository.storeWorkoutPlan(newWorkoutPlan)
-        resetCreator()
+        viewModelScope.launch {
+            planRepository.storeWorkoutPlan(newWorkoutPlan)
+            resetCreator()
+        }
     }
 
     private suspend fun resetCreator() {
