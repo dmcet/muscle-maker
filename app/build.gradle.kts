@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ktlint)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -60,6 +61,9 @@ dependencies {
     implementation(libs.bundles.koin)
     implementation(libs.bundles.logging)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.bundles.room)
+
+    ksp(libs.room.compiler)
 
     ktlintRuleset(libs.ktlint.compose.ruleset)
 
