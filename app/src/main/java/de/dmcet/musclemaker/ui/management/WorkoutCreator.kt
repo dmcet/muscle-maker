@@ -36,8 +36,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import de.dmcet.musclemaker.R
-import de.dmcet.musclemaker.domain.workout.WorkoutSet
-import de.dmcet.musclemaker.domain.workout.exercise.Exercise
+import de.dmcet.musclemaker.domain.workout.api.WorkoutSet
+import de.dmcet.musclemaker.domain.workout.api.Exercise
 import de.dmcet.musclemaker.ui.management.api.WorkoutCreatorState
 import de.dmcet.musclemaker.ui.management.api.WorkoutCreatorViewModelApi
 import de.dmcet.musclemaker.ui.theme.Typography

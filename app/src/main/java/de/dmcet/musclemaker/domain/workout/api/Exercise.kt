@@ -1,4 +1,4 @@
-package de.dmcet.musclemaker.domain.workout.exercise
+package de.dmcet.musclemaker.domain.workout.api
 
 enum class BodyArea {
     Shoulders,

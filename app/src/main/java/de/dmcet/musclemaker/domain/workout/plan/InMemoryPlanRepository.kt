@@ -1,6 +1,7 @@
-package de.dmcet.musclemaker.domain.workout
+package de.dmcet.musclemaker.domain.workout.plan
 
 import de.dmcet.musclemaker.domain.workout.api.PlanRepository
+import de.dmcet.musclemaker.domain.workout.api.WorkoutPlan
 import io.github.oshai.kotlinlogging.KotlinLogging
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

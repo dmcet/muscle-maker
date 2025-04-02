@@ -1,6 +1,5 @@
 package de.dmcet.musclemaker.domain.workout.api
 
-import de.dmcet.musclemaker.domain.workout.WorkoutPlan
 import kotlinx.coroutines.flow.Flow
 
 interface PlanRepository {

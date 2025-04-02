@@ -1,6 +1,6 @@
 package de.dmcet.musclemaker.domain.koin
 
-import de.dmcet.musclemaker.domain.workout.InMemoryPlanRepository
+import de.dmcet.musclemaker.domain.workout.plan.InMemoryPlanRepository
 import de.dmcet.musclemaker.domain.workout.api.ExerciseRepository
 import de.dmcet.musclemaker.domain.workout.api.PlanRepository
 import de.dmcet.musclemaker.domain.workout.exercise.FixedValueExerciseRepository

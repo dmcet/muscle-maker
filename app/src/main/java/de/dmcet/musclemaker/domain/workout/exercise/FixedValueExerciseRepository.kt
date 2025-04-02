@@ -1,5 +1,7 @@
 package de.dmcet.musclemaker.domain.workout.exercise
 
+import de.dmcet.musclemaker.domain.workout.api.BodyArea
+import de.dmcet.musclemaker.domain.workout.api.Exercise
 import de.dmcet.musclemaker.domain.workout.api.ExerciseRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf

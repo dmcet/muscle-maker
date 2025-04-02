@@ -1,11 +1,11 @@
 package de.dmcet.musclemaker.ui.management
 
 import androidx.lifecycle.viewModelScope
-import de.dmcet.musclemaker.domain.workout.WorkoutPlan
-import de.dmcet.musclemaker.domain.workout.WorkoutSet
+import de.dmcet.musclemaker.domain.workout.api.WorkoutPlan
+import de.dmcet.musclemaker.domain.workout.api.WorkoutSet
 import de.dmcet.musclemaker.domain.workout.api.ExerciseRepository
 import de.dmcet.musclemaker.domain.workout.api.PlanRepository
-import de.dmcet.musclemaker.domain.workout.exercise.Exercise
+import de.dmcet.musclemaker.domain.workout.api.Exercise
 import de.dmcet.musclemaker.ui.management.api.WorkoutCreatorState
 import de.dmcet.musclemaker.ui.management.api.WorkoutCreatorViewModelApi
 import io.github.oshai.kotlinlogging.KotlinLogging

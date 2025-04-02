@@ -1,8 +1,8 @@
 package de.dmcet.musclemaker.ui.management.api
 
 import androidx.lifecycle.ViewModel
-import de.dmcet.musclemaker.domain.workout.WorkoutSet
-import de.dmcet.musclemaker.domain.workout.exercise.Exercise
+import de.dmcet.musclemaker.domain.workout.api.WorkoutSet
+import de.dmcet.musclemaker.domain.workout.api.Exercise
 import kotlinx.coroutines.flow.Flow
 
 enum class WorkoutCreatorState { ExerciseSelection, SetDefinition }

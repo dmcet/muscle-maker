@@ -1,5 +1,6 @@
 package de.dmcet.musclemaker.domain.workout.exercise
 
+import de.dmcet.musclemaker.domain.workout.api.Exercise
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert

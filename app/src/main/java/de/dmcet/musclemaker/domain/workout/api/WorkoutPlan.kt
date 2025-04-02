@@ -1,6 +1,4 @@
-package de.dmcet.musclemaker.domain.workout
-
-import de.dmcet.musclemaker.domain.workout.exercise.Exercise
+package de.dmcet.musclemaker.domain.workout.api
 
 data class WorkoutSet(
     val reps: Int,

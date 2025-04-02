@@ -24,7 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import de.dmcet.musclemaker.R
-import de.dmcet.musclemaker.domain.workout.WorkoutPlan
+import de.dmcet.musclemaker.domain.workout.api.WorkoutPlan
 import de.dmcet.musclemaker.ui.theme.Typography
 import org.koin.androidx.compose.koinViewModel
 
