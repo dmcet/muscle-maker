@@ -1,13 +1,14 @@
-package de.dmcet.musclemaker.domain.workout.persistence
+package de.dmcet.musclemaker.domain.workout.persistence.entities
 
 import androidx.room.Embedded
 import androidx.room.Entity
-import androidx.room.PrimaryKey
 import androidx.room.Relation
 
-@Entity
+@Entity(
+    tableName = "workout_sets",
+    primaryKeys = ["reps", "weight", "exerciseName", "workoutPlanName"]
+)
 data class WorkoutSetEntity(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val reps: Int,
     val weight: Double,
     val exerciseName: String,

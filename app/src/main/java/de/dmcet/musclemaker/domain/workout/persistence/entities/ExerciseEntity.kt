@@ -1,11 +1,11 @@
-package de.dmcet.musclemaker.domain.workout.persistence
+package de.dmcet.musclemaker.domain.workout.persistence.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import de.dmcet.musclemaker.domain.workout.api.BodyArea
 import de.dmcet.musclemaker.domain.workout.api.Exercise
 
-@Entity
+@Entity(tableName = "exercises")
 data class ExerciseEntity(
     @PrimaryKey val name: String,
     val bodyArea: String,
