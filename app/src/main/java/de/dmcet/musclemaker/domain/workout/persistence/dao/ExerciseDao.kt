@@ -5,15 +5,16 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import de.dmcet.musclemaker.domain.workout.persistence.entities.ExerciseEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ExerciseDao {
     @Insert
-    fun insertAll(vararg exercises: ExerciseEntity)
+    suspend fun insertAll(vararg exercises: ExerciseEntity)
 
     @Delete
-    fun delete(exercise: ExerciseEntity)
+    suspend fun delete(exercise: ExerciseEntity)
 
     @Query("SELECT * FROM exercises")
-    fun getAll(): List<ExerciseEntity>
+    fun getAll(): Flow<List<ExerciseEntity>>
 }

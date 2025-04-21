@@ -10,7 +10,6 @@ data class WorkoutPlanEntity(
     @PrimaryKey val name: String
 )
 
-@Entity
 data class WorkoutPlanWithSets(
     @Embedded val workoutPlan: WorkoutPlanEntity,
     @Relation(

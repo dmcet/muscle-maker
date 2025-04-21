@@ -7,16 +7,17 @@ import androidx.room.Query
 import androidx.room.Transaction
 import de.dmcet.musclemaker.domain.workout.persistence.entities.WorkoutSetEntity
 import de.dmcet.musclemaker.domain.workout.persistence.entities.WorkoutSetWithExercise
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface WorkoutSetDao {
     @Insert
-    fun insertAll(vararg workoutSets: WorkoutSetEntity)
+    suspend fun insertAll(vararg workoutSets: WorkoutSetEntity)
 
     @Delete
-    fun delete(workoutSet: WorkoutSetEntity)
+    suspend fun delete(workoutSet: WorkoutSetEntity)
 
     @Transaction
     @Query("SELECT * FROM workout_sets")
-    fun getAll(): List<WorkoutSetWithExercise>
+    fun getAll(): Flow<List<WorkoutSetWithExercise>>
 }

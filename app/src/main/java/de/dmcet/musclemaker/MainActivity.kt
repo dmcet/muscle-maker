@@ -21,6 +21,7 @@ import de.dmcet.musclemaker.ui.management.WorkoutCreator
 import de.dmcet.musclemaker.ui.management.WorkoutManager
 import de.dmcet.musclemaker.ui.navigation.Routes
 import de.dmcet.musclemaker.ui.theme.MusclemakerTheme
+import org.koin.android.ext.koin.androidContext
 import org.koin.compose.KoinApplication
 
 class MainActivity : ComponentActivity() {

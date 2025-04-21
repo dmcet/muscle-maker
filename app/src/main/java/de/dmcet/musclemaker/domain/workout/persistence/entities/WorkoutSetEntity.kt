@@ -15,7 +15,6 @@ data class WorkoutSetEntity(
     val workoutPlanName: String
 )
 
-@Entity
 data class WorkoutSetWithExercise(
     @Embedded val workoutSet: WorkoutSetEntity,
     @Relation(
